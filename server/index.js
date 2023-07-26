@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const port = 3000;
-const sequelize = require('./model/index')
+const db = require('./model/index')
 const router = require('./router');
 
 app.use(express.json());
@@ -12,13 +12,12 @@ app.get('*', (req, res) => {
   res.send('Page not found');
 });
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`)
-    })
-  } catch (error) {
-    console.log('Failed to connect: ', error);
-  }
-})();
+
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`App listening on port ${port}`)
+  })
+}).catch((err) => {
+  console.log('Failed to connect: ', err);  
+});
+

@@ -37,5 +37,14 @@ const getOwnItems = async (req, res) => {
   }
 }
 
+const checkUser = async (req, res) => {
+  const { id, email, name } = req.user;
+  if (email) {
+    res.status(200);
+    res.send({ id, email, name });
+  }
+}
 
-module.exports =  { getAllItems, getOwnItems };
+
+
+module.exports =  { getAllItems, getOwnItems, checkUser };

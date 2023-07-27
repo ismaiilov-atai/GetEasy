@@ -1,4 +1,4 @@
-import { AppWrapper } from './context/user-context';
+import { AppWrapper } from '../context/user-context';
 
 
 export default function MyApp({ Component, pageProps }) {

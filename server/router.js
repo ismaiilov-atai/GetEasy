@@ -3,9 +3,10 @@ const router = express.Router()
 const insertUser = require('./controller/userController');
 const insertItem = require('./controller/itemController');
 const offer = require('./controller/offerController');
-const { getAllItems, getOwnItems } = require('./controller/homeController');
+const { getAllItems, getOwnItems, checkUser } = require('./controller/homeController');
 const authMiddleware = require('./middlewares/auth');
 
+router.get('/check-user', authMiddleware, checkUser)
 router.post('/user', insertUser);
 router.post('/item', insertItem);
 router.post('/offer', offer);

@@ -1,4 +1,5 @@
 const db = require('../model/index');
+const bcrypt = require('bcrypt');
 
 const insertUser = async (req, res) => {
   const {name, email, password} = req.body;
@@ -14,8 +15,8 @@ const insertUser = async (req, res) => {
       .status(401)
       .send({ error: '401', message: 'Bad credentials' });
     }
-
-    const insertedUser = await db.user.create({name, email, password});
+    const hashedPassword =  await bcrypt.hash(password, 10);
+    const insertedUser = await db.user.create({name, email, password: hashedPassword});
     const { id } = insertedUser;
     req.session.uid = id;
     res.status(201);

@@ -1,0 +1,65 @@
+.signin_container {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  height: 99vh;
+  width: 100vw;
+  background-image: url('../public/images/sign_back_img.svg');
+  background-repeat: no-repeat;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  background-position: bottom right;
+
+}
+
+.form_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 80%;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 30px;
+  border-radius: 40px;
+  background: rgba(233, 231, 231, 0.15);
+}
+
+.brand_logo {
+  height: 30%;
+  width: 50%;
+  align-self: center;
+  background-image: url('../public/images/brand-logo.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.input {
+  height: 40px;
+  border-radius: 12px;
+  border: 2px solid #888585;
+  padding: 0px 20px;
+  letter-spacing: 2px;
+}
+
+.submit_btn {
+  height: 46px;
+  width: 30%;
+  align-self: center;
+  border-radius: 12px;
+  background: #62B545;
+  border: unset;
+  color: white;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

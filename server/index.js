@@ -1,9 +1,32 @@
-const express = require('express')
+const express = require('express');
 const app = express();
-const port = 3000;
-const db = require('./model/index')
+const port = 3001;
+const db = require('./model/index');
+const cors = require('cors');
 const router = require('./router');
+const session = require('express-session');
 
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true,
+};
+
+app.set('trust proxy', 1);
+app.use(
+  session({
+    name: 'sid',
+    saveUninitialized: false,
+    resave: false,
+    secret: 'SECRET',
+    cookie: {
+      maxAge: 1000 * 60 * 60,
+      sameSite: false,
+      httpOnly: false,
+      secure: false,
+    },
+  })
+);
+app.use(cors(corsConfig));
 app.use(express.json());
 app.use(router);
 

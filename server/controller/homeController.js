@@ -2,7 +2,7 @@ const db = require('../model/index');
 
 const getAllItems = async (req, res) => {
   try {
-    const allItems = await db.user.findAll();
+    const allItems = await db.item.findAll();
     res.status = 200;
     res.send(allItems);
   } catch (error) {

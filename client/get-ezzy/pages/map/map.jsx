@@ -21,7 +21,6 @@ const center = {
 
 function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
 
-  const [map, setMap] = useState(null)
   const [pointA, setPointA] = useState({});
   const [pointB, setPointB] = useState({});
   const [response, setResponse] = useState(null);
@@ -39,12 +38,6 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
-
-
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
-
 
   function pickDestinations(e) {
     if (!pickUpAddressSelected) setPointA({ lat: e.latLng.lat(), lng: e.latLng.lng() });
@@ -76,7 +69,6 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         zoom={13}
-        onUnmount={onUnmount}
         onClick={pickDestinations}
         center={center}
         onLoad={onMapLoad}

@@ -7,17 +7,15 @@ export function AppWrapper({ children }) {
 
   const [userState, setUserState] = useState({});
   const [isSignedin, setIsSignedin] = useState(async () => {
-    await apiService.checkUser().then( _ => {
-     setIsSignedin(true);
+    await apiService.checkUser().then( data => {
+     setIsSignedin(data);
     }).catch( _ => setIsSignedin(false));
   })
   
-  console.log(isSignedin);
-
   return (
     <UserContext.Provider value={ { 
       userState, setUserState,
-      isSignedin, setIsSignedin
+      isSignedin, setIsSignedin,
       }}>
       {
         children

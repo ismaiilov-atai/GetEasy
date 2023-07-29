@@ -5,7 +5,7 @@ import { UserContext } from '../../context/user-context';
 
 export default function SignIn() {
 
-  const { _, setUserState, setIsSignedin } = useContext(UserContext);
+  const { setUserState, setIsSignedin } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

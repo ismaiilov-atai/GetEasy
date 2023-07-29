@@ -8,6 +8,11 @@ import Dashboard from './dashboard/dashboard';
 export default function Home() {
   const { isSignedin } = useContext(UserContext);
   
+  let isFirstTime;
+  useContext(() => {
+    isFirstTime = localStorage.getItem('isFirstTime');
+  });
+
   
 
   return (

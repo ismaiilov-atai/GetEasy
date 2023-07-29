@@ -1,6 +1,10 @@
+import PostItem from '../post-item/post-item';
+
 
 export default function Dashboard() {
   return (
-    <div>Hello Dashboard</div>
+    <div>
+      <PostItem />
+    </div>
   )
 }

@@ -6,22 +6,25 @@ const cors = require('cors');
 const router = require('./router');
 const session = require('express-session');
 
+
 const corsConfig = {
-  origin: 'http://localhost:3000',
+  origin: "http://localhost:3000",
+  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
   credentials: true,
 };
+
 
 app.set('trust proxy', 1);
 app.use(
   session({
     name: 'sid',
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     secret: 'SECRET',
     cookie: {
       maxAge: 1000 * 60 * 60,
-      sameSite: false,
-      httpOnly: false,
+      sameSite: true,
+      httpOnly: true,
       secure: false,
     },
   })

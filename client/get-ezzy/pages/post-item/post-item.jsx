@@ -4,6 +4,7 @@ import Map from '../map/map';
 import PopUp from '../popup/popup';
 import { useState, useContext } from 'react';
 import { UserContext } from '../../context/user-context';
+import apiService from '../../utils/api-service';
 
 
 export default function PostItem() {
@@ -16,7 +17,7 @@ export default function PostItem() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
-  const [address, setAddress] = useState([]);
+  const [addresses, setAddress] = useState([]);
 
   const onChangeHandler = (e) => {
     switch (e.target.id) {
@@ -32,10 +33,20 @@ export default function PostItem() {
     }
   }
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
-    console.log(userState.id, address, ' -------')
-    console.log(address);
+    try {
+      const item = await apiService.inserItem({
+        userId: userState.id, name, description, weight
+      });
+      for (let address of addresses) {
+        await apiService.inserAddress({
+          itemId: item.id, lat: address.lat, lng: address.lng
+        });
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -70,7 +81,7 @@ export default function PostItem() {
             />
 
             <button type='submit'
-              disabled={address.length !== 2}
+              disabled={addresses.length !== 2}
               className={styles.submit_btn}
             >
               Submit

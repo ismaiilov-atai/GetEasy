@@ -2,11 +2,16 @@ const db = require('../model/index');
 
 const getAllItems = async (req, res) => {
   try {
-    const allItems = await db.item.findAll();
+    const allItems = await db.item.findAll({
+      include: [
+        db.address,
+        db.offer
+      ]
+    });
     res.status = 200;
     res.send(allItems);
   } catch (error) {
-    console.log('Failed ', error)
+    console.log('Failed ', error);
   }
 }
 

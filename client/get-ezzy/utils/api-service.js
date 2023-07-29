@@ -19,7 +19,34 @@ const apiService = {
       if (res.status === 440 || res.status === 401) return false;
       else return res.json();
     });
+  },
+
+  inserItem: async (item) => {
+    return await fetch('http://localhost:3001/item', 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(item)
+      }
+    ).then(res => res.json());
+  },
+
+  inserAddress: async (address) => {
+    return await fetch('http://localhost:3001/address', 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(address)
+      }
+  ).then(res => res.json());
   }
+
 }
 
 

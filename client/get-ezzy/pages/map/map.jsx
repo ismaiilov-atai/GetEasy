@@ -16,7 +16,7 @@ const center = {
 function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "<api>"
+    googleMapsApiKey: "AIzaSyDC9XaXQK5KW-kw6kVXb1kUFLgGuz8Qfuk"
   })
 
   const [map, setMap] = useState(null)

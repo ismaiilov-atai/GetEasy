@@ -1,5 +1,12 @@
-import { useState, useCallback, memo, useEffect } from "react";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { useState, useCallback, memo, useRef } from "react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  useLoadScript,
+  Marker,
+  DirectionsService,
+  DirectionsRenderer
+} from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -7,34 +14,37 @@ const containerStyle = {
 };
 
 const center = {
-  lat: 42.87572823005869,
-  lng: 74.60364818572998
+  lat: 42.8757,
+  lng: 74.6036
 };
 
 
-
 function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyDC9XaXQK5KW-kw6kVXb1kUFLgGuz8Qfuk"
-  })
 
   const [map, setMap] = useState(null)
   const [pointA, setPointA] = useState({});
   const [pointB, setPointB] = useState({});
+  const [response, setResponse] = useState(null);
+  const DirectionsServiceOption = {
+    origin: pointA,
+    destination: pointB,
+    travelMode: "DRIVING",
+  };
 
-  const pointsArray = [pointA, pointB];
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDC9XaXQK5KW-kw6kVXb1kUFLgGuz8Qfuk",
+  });
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map)
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
   }, []);
+
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+
 
   function pickDestinations(e) {
     if (!pickUpAddressSelected) setPointA({ lat: e.latLng.lat(), lng: e.latLng.lng() });
@@ -48,38 +58,58 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
     setShowPopup(true);
   }
 
-  let markers;
-  if (pointsArray) {
-    markers = [pointA, pointB].map((marker, indx) => {
-      if (marker) {
-        return <Marker
-          key={indx}
-          position={{
-            lat: +marker.lat,
-            lng: +marker.lng
-          }} />
+  let count = useRef(0);
+  const directionsCallback = (response) => {
+    if (response !== null && count.current < 2) {
+      if (response.status === "OK") {
+        count.current += 1;
+        setResponse(response);
+      } else {
+        count.current = 0;
+        console.log("response: ", response);
       }
-    });
-  }
-
+    }
+  };
 
   return isLoaded ? (
     <>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={12}
-        onLoad={onLoad}
+        zoom={13}
         onUnmount={onUnmount}
         onClick={pickDestinations}
+        center={center}
+        onLoad={onMapLoad}
       >
         {
-          markers
+          pointB !== {} &&
+          <>
+            {
+              response !== null && (
+                <DirectionsRenderer
+                  options={{
+                    directions: response,
+                  }}
+                />
+              )
+            }
+            <DirectionsService
+              options={DirectionsServiceOption}
+              callback={directionsCallback}
+            />
+          </>
+        }
+        {
+          Object.keys(pointB).length < 1 &&
+          <Marker
+            position={{
+              lat: pointA.lat,
+              lng: pointA.lng
+            }} />
         }
       </GoogleMap>
     </>
   ) : <></>
-
 }
 
 

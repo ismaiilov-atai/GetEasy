@@ -11,8 +11,6 @@ export default function PostItem() {
 
   const { userState } = useContext(UserContext);
 
-  console.log(userState, ' -----------')
-
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [weight, setWeight] = useState();

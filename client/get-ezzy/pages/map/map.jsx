@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 import { useState, useCallback, memo, useRef } from "react";
 import {
   GoogleMap,

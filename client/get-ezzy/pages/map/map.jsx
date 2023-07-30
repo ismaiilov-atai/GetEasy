@@ -1,7 +1,7 @@
+import 'dotenv/config'
 import { useState, useCallback, memo, useRef } from "react";
 import {
   GoogleMap,
-  useJsApiLoader,
   useLoadScript,
   Marker,
   DirectionsService,
@@ -31,7 +31,7 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
   };
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDC9XaXQK5KW-kw6kVXb1kUFLgGuz8Qfuk",
+    googleMapsApiKey: process.env.NEXT_PUBLIC_API_KEY,
   });
 
   const mapRef = useRef();

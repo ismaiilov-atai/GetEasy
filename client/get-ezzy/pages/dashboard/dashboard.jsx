@@ -1,6 +1,7 @@
 import PostItem from '../post-item/post-item';
 import Navbar from '../navbar/navbar';
 import styles from '../../styles/Dashboard.module.css';
+import Items from '../items/items';
 import React, { useState } from 'react';
 
 export default function Dashboard() {
@@ -13,10 +14,8 @@ export default function Dashboard() {
       <Navbar setIsCreateItem={setIsCreateItem} />
       {
         !isCreateItem ? 
-          <div>
-            one two three
-          </div>
-          : <PostItem />
+          <Items isOwnItems={false} />
+          : <PostItem setIsCreateItem={setIsCreateItem} />
       }
     </div>
   )

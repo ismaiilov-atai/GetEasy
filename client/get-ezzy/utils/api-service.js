@@ -1,5 +1,5 @@
+import 'dotenv/config';
 const Base_URL = 'http://localhost:3001';
-
 
 const apiService = {
   signin: async (user) => {
@@ -15,14 +15,14 @@ const apiService = {
   
     
   checkUser: async () => {
-    return await fetch('http://localhost:3001/check-user', {credentials: 'include'}).then(res => {
+    return await fetch(`${Base_URL}/check-user`, {credentials: 'include'}).then(res => {
       if (res.status === 440 || res.status === 401) return false;
       else return res.json();
     });
   },
 
   inserItem: async (item) => {
-    return await fetch('http://localhost:3001/item', 
+    return await fetch(`${Base_URL}/item`, 
       {
         method: 'POST',
         headers: {
@@ -35,7 +35,7 @@ const apiService = {
   },
 
   inserAddress: async (address) => {
-    return await fetch('http://localhost:3001/address', 
+    return await fetch(`${Base_URL}/address`, 
       {
         method: 'POST',
         headers: {
@@ -45,6 +45,18 @@ const apiService = {
         body: JSON.stringify(address)
       }
   ).then(res => res.json());
+  },
+
+  getAllItems: async () => {
+    return await fetch(`${Base_URL}/`, { credentials: 'include' }
+  ).then(res => res.json());
+  },
+
+  getPlacesNames: async (lat, lng) => {
+    const queryParams = encodeURI(`latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_API_KEY}`);
+    return await fetch(`https://maps.googleapis.com/maps/api/geocode/json?${queryParams}`
+  ).then(res => res.json());
+
   }
 
 }

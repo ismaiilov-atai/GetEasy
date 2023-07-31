@@ -7,7 +7,7 @@ import { useState } from 'react';
 import apiService from '../../utils/api-service';
 
 
-export default function PostItem() {
+export default function PostItem({ setIsCreateItem }) {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -43,6 +43,7 @@ export default function PostItem() {
           itemId: item.id, lat: address.lat, lng: address.lng
         });
       }
+      setIsCreateItem(false)
     } catch (error) {
       console.log(error)
     }

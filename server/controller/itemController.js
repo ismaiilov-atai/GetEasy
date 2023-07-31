@@ -5,10 +5,10 @@ const insertItem = async (req, res) => {
   try {
     const insertedItem = await db.item.create(
       {
-        userId,
         name, 
         description, 
         weight,
+        userId
       }
     );
     res.status = 201;

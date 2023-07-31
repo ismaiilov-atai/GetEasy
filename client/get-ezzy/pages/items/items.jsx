@@ -9,10 +9,12 @@ export default function Items({ isOwnItems }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    apiService.getAllItems().then(data => setItems(data));
-  }, [])
+    if (isOwnItems) {
+      apiService.getOwnItems().then(data => setItems(data));
+    } else apiService.getAllItems().then(data => setItems(data));
+  }, [isOwnItems])
 
-  const itemsHTML = items.map((item, indx) => <Item key={indx} item={item} />)
+  const itemsHTML = items.length && items.map((item, indx) => <Item key={indx} item={item} />)
 
   return (
     <div className={styles.items_contaner}>

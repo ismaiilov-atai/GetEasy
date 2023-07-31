@@ -44,7 +44,7 @@ const apiService = {
         credentials: 'include',
         body: JSON.stringify(address)
       }
-  ).then(res => res.json());
+    ).then(res => res.json());
   },
 
   getAllItems: async () => {
@@ -55,8 +55,12 @@ const apiService = {
   getPlacesNames: async (lat, lng) => {
     const queryParams = encodeURI(`latlng=${lat},${lng}&key=${process.env.NEXT_PUBLIC_API_KEY}`);
     return await fetch(`https://maps.googleapis.com/maps/api/geocode/json?${queryParams}`
-  ).then(res => res.json());
+    ).then(res => res.json());
+  },
 
+  getOwnItems: async () => {
+    return await fetch(`${Base_URL}/${localStorage.getItem('userId')}`
+    ).then(res => res.json());
   }
 
 }

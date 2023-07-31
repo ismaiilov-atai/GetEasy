@@ -23,7 +23,10 @@ export default function Item({ item }) {
   return (
     <div className={styles.item_card}>
 
-      <Image className={styles.btn_details} src={nextIcon} />
+      <Image className={styles.btn_details}
+        src={nextIcon}
+        alt='next button image'
+      />
 
       <div className={styles.title_description_container}>
         <div><strong>name:</strong> {item.name}</div>

@@ -1,11 +1,11 @@
-import { useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from '../../styles/Sign-in.module.css';
 import apiService from '../../utils/api-service';
 import { UserContext } from '../../context/user-context';
 
 export default function SignIn() {
 
-  const { setUserState, setIsSignedin } = useContext(UserContext);
+  const { setIsSignedin } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,8 +31,8 @@ export default function SignIn() {
       .signin(user)
       .then(data => {
         if (data) {
-          setUserState(data);
           setIsSignedin(true);
+          localStorage.setItem('userId', data.id);
         }
       })
       .catch(err => console.log('Failed to signin ', err));

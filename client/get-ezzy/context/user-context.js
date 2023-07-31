@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import apiService from '../utils/api-service';
 
 export const UserContext = createContext();
@@ -15,7 +15,7 @@ export function AppWrapper({ children }) {
   return (
     <UserContext.Provider value={ { 
       userState, setUserState,
-      isSignedin, setIsSignedin,
+      isSignedin, setIsSignedin
       }}>
       {
         children

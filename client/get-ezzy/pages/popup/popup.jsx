@@ -1,7 +1,7 @@
-import styles from '../../styles/Popups.module.css'
+import styles from '../../styles/Popups.module.css';
+import React from "react";
 
 export default function PopUp({ title, yesBtnTtl, noBtnTtl, setAnswer, setAddressSelected }) {
-
 
   function handleAnswer(e) {
     if (e.target.id === 'yes') setAddressSelected(true);

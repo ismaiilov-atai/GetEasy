@@ -1,15 +1,13 @@
+import React from 'react';
 import styles from '../../styles/Sign-in.module.css';
 import postStyles from '../../styles/PostItem.module.css';
 import Map from '../map/map';
 import PopUp from '../popup/popup';
-import { useState, useContext } from 'react';
-import { UserContext } from '../../context/user-context';
+import { useState } from 'react';
 import apiService from '../../utils/api-service';
 
 
 export default function PostItem() {
-
-  const { userState } = useContext(UserContext);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -35,9 +33,10 @@ export default function PostItem() {
 
   async function submitHandler(e) {
     e.preventDefault();
+    const userId = +localStorage.getItem('userId');
     try {
       const item = await apiService.inserItem({
-        userId: userState.id, name, description, weight
+        userId, name, description, weight
       });
       for (let address of addresses) {
         await apiService.inserAddress({

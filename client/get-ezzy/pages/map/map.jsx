@@ -81,6 +81,10 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
                 <DirectionsRenderer
                   options={{
                     directions: response,
+                    polylineOptions: {
+                      strokeOpacity: 1,
+                      strokeColor: '#FF0000',
+                    },
                   }}
                 />
               )

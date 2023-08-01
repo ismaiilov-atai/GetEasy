@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import styles from '../../styles/Items.module.css';
 import apiService from '../../utils/api-service';
 import Image from 'next/image';
-import nextIcon from '../../public/images/next.svg'
+import nextIcon from '../../public/images/next.svg';
+import { UserContext } from "../../context/user-context";
+import { useRouter } from 'next/router';
+
 
 export default function Item({ item }) {
-
+  const router = useRouter();
   const [pointA, setPointA] = useState()
   const [pointB, setPointB] = useState()
+  const { itemState, setItem } = useContext(UserContext);
 
   useEffect(() => {
     for (let i = 0; i < item.addresses.length; i++) {
@@ -19,6 +23,10 @@ export default function Item({ item }) {
     }
   }, []);
 
+  function onClickHandler() {
+    setItem(item);
+    router.replace('/details/details');
+  }
 
   return (
     <div className={styles.item_card}>
@@ -26,6 +34,7 @@ export default function Item({ item }) {
       <Image className={styles.btn_details}
         src={nextIcon}
         alt='next button image'
+        onClick={() => onClickHandler()}
       />
 
       <div className={styles.title_description_container}>

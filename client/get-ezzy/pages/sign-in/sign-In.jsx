@@ -32,7 +32,7 @@ export default function SignIn() {
       .then(data => {
         if (data) {
           setIsSignedin(true);
-          localStorage.setItem('userId', data.id);
+          localStorage.setItem('user', JSON.stringify(data));
         }
       })
       .catch(err => console.log('Failed to signin ', err));

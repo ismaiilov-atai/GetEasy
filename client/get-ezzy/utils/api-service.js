@@ -58,8 +58,8 @@ const apiService = {
     ).then(res => res.json());
   },
 
-  getOwnItems: async () => {
-    return await fetch(`${Base_URL}/${localStorage.getItem('userId')}`
+  getOwnItems: async (userId) => {
+    return await fetch(`${Base_URL}/${userId}`
     ).then(res => res.json());
   }
 

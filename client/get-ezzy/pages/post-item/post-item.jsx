@@ -17,6 +17,9 @@ export default function PostItem({ setIsCreateItem }) {
   const [pickUpAddressSelected, setPickUpAddressSelected] = useState(false);
   const [addresses, setAddress] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+
   const onChangeHandler = (e) => {
     switch (e.target.id) {
       case 'name':
@@ -33,11 +36,11 @@ export default function PostItem({ setIsCreateItem }) {
 
   async function submitHandler(e) {
     e.preventDefault();
-    const userId = +localStorage.getItem('userId');
     try {
       const item = await apiService.inserItem({
-        userId, name, description, weight
+        name, description, weight, userId: user.id,
       });
+
       for (let address of addresses) {
         await apiService.inserAddress({
           itemId: item.id, lat: address.lat, lng: address.lng

@@ -1,7 +1,7 @@
 const db = require('../model/index');
 
 const insertItem = async (req, res) => {
-  const {userId, name, description, weight} = req.body;
+  const {name, description, weight, userId} = req.body;
   try {
     const insertedItem = await db.item.create(
       {

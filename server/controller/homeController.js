@@ -35,7 +35,7 @@ const getOwnItems = async (req, res) => {
     });
 
     res.status = 200;
-    res.send(allOwnItems);
+    res.send(allOwnItems.items);
     
   } catch (error) {
     console.log('Failed ', error);

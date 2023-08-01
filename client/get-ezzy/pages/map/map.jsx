@@ -19,10 +19,10 @@ const center = {
 };
 
 
-function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
+function Map({ a, b, setShowPopup, pickUpAddressSelected, setAddress }) {
 
-  const [pointA, setPointA] = useState({});
-  const [pointB, setPointB] = useState({});
+  const [pointA, setPointA] = useState(a || {});
+  const [pointB, setPointB] = useState(b || {});
   const [response, setResponse] = useState(null);
   const DirectionsServiceOption = {
     origin: pointA,
@@ -40,6 +40,7 @@ function Map({ setShowPopup, pickUpAddressSelected, setAddress }) {
   }, []);
 
   function pickDestinations(e) {
+    if (a) return;
     if (!pickUpAddressSelected) setPointA({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     else {
       setPointB(() => {

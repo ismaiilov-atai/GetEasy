@@ -5,7 +5,7 @@ export const UserContext = createContext();
 
 export function AppWrapper({ children }) {
 
-  const [userState, setUserState] = useState({});
+  const [itemState, setItem] = useState({});
   const [isSignedin, setIsSignedin] = useState(async () => {
     await apiService.checkUser().then( data => {
      setIsSignedin(data);
@@ -14,7 +14,7 @@ export function AppWrapper({ children }) {
   
   return (
     <UserContext.Provider value={ { 
-      userState, setUserState,
+      itemState, setItem,
       isSignedin, setIsSignedin
       }}>
       {

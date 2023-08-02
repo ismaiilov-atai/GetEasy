@@ -11,7 +11,7 @@ git clone https://github.com/ismaiilov-atai/GetEasy.gi
 _server and client_
 
 ```
-npm init``
+npm i
 ```
 
 # Requirements

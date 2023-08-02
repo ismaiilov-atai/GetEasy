@@ -5,9 +5,10 @@ const insertUser = async (req, res) => {
   const {name, email, password} = req.body;
   const user = await db.user.findOne({ where: { email } });
   if (user) {
+    req.session.uid = user.id;
     return res
-      .status(409)
-      .send({ error: '409', message: 'User already exists' });
+      .status(200)
+      .send(user);
   }
   try {
     if (password === '') {

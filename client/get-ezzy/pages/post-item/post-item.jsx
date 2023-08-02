@@ -18,7 +18,6 @@ export default function PostItem({ setIsCreateItem }) {
   const [addresses, setAddress] = useState([]);
 
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user)
 
   const onChangeHandler = (e) => {
     switch (e.target.id) {

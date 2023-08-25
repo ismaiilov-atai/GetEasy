@@ -8,14 +8,16 @@
 #### [Watch demo video](https://www.youtube.com/watch?v=mQbxmG_1Ezw)
 
 # get started
-
+1. Clone this repo!
 ```
 git clone https://github.com/ismaiilov-atai/GetEasy.gi
-
 ```
-
-_cd server and client_
-
+2. Enter to the folder!
+ ```
+ cd server
+ cd client
+ ```
+3. Run command for both folders!
 ```
 npm i
 ```

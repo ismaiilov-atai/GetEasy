@@ -11,7 +11,7 @@ project designed to move item from point A to B easily with auction system
 git clone https://github.com/ismaiilov-atai/GetEasy.gi
 ```
 
-_./server and ./client_
+_server and client_
 
 ```
 npm i

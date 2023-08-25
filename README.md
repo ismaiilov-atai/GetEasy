@@ -11,7 +11,7 @@ project designed to move item from point A to B easily with auction system
 git clone https://github.com/ismaiilov-atai/GetEasy.gi
 ```
 
-_server and client_
+_./server and ./client_
 
 ```
 npm i
@@ -22,7 +22,7 @@ npm i
 - Gooogle Api Key
    
 
-# Need to be implemented
+# Feather development
 
 - Offer button which gets created offer for item with id as foreign key
   

@@ -9,15 +9,18 @@
 
 # get started
 1. Clone this repo!
+
    ```
    git clone https://github.com/ismaiilov-atai/GetEasy.gi
    ```
-2. Enter to the folder!
+3. Enter to the folder!
+
    ```
    cd server
    cd client
    ```
-3. Run command for both folders!
+5. Run command for both folders!
+
    ```
    npm i
    ```

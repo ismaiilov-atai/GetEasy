@@ -5,7 +5,7 @@
 
 ### Project designed to move item from point A to B easily with auction system
 
-[watch demo video](https://www.youtube.com/watch?v=mQbxmG_1Ezw)
+#### [Watch demo video](https://www.youtube.com/watch?v=mQbxmG_1Ezw)
 
 # get started
 
@@ -27,15 +27,15 @@ To be able to run and render google maps, you will need to obtain API key
 - [Gooogle Api Key](https://developers.google.com/maps)
 
 # Tech Stack
- - PostgreSQL with sequelize
+ - [PostgreSQL](https://www.postgresql.org/) with [sequelize](https://sequelize.org/api/v6/class/src/model.js~model)
    
- - express
+ - [express](https://expressjs.com)
    
- - express-sessions for authentication
+ - [express-sessions](https://www.npmjs.com/package/express-session) for authentication
    
- - NextJs
+ - [NextJS](https://nextjs.org/)
    
- - React-google-maps
+ - [React-google-maps](https://www.npmjs.com/package/@react-google-maps/api)
    
 
 # Feather development

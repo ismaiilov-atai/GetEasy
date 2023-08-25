@@ -1,6 +1,8 @@
 # GetEasy
 ![Alt text](client/get-ezzy/public/images/brand-logo.svg)
 
+
+
 project designed to move item from point A to B easily with auction system
 
 [watch demo video](https://www.youtube.com/watch?v=mQbxmG_1Ezw)

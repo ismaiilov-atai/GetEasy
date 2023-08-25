@@ -11,9 +11,10 @@
 
 ```
 git clone https://github.com/ismaiilov-atai/GetEasy.gi
+
 ```
 
-_server and client_
+_cd server and client_
 
 ```
 npm i
@@ -21,7 +22,20 @@ npm i
 
 # Requirements
 
-- Gooogle Api Key
+To be able to run and render google maps, you will need to obtain API key
+
+- [Gooogle Api Key](https://developers.google.com/maps)
+
+# Tech Stack
+ - PostgreSQL with sequelize
+   
+ - express
+   
+ - express-sessions for authentication
+   
+ - NextJs
+   
+ - React-google-maps
    
 
 # Feather development
